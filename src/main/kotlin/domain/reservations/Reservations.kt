@@ -4,6 +4,7 @@ import domain.dto.ReservationDto
 import domain.money.Money
 import domain.paycalculator.items.PriceDiscountCalculator
 import domain.reservations.items.Reservation
+import domain.timetable.items.ScreeningSchedule
 import kotlin.collections.fold
 
 class Reservations(
@@ -15,6 +16,11 @@ class Reservations(
         require(!duplicated) { "선택하신 상영 시간이 겹칩니다." }
 
         return Reservations(reservations + reservation)
+    }
+
+    fun isCheckScreenTime(screeningSchedule: ScreeningSchedule) {
+        val duplicated = reservations.any { it.isDuplicatedScreenTime(screeningSchedule) }
+        require(!duplicated) { "선택하신 상영 시간이 겹칩니다. 다른 시간을 선택해 주세요." }
     }
 
     fun calculateTotalDiscountPrice(priceDiscountCalculator: PriceDiscountCalculator): Money {

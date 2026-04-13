@@ -11,18 +11,26 @@ class ScreeningSchedule(
     private val movie: Movie,
     private val screen: Screen,
     private val screenTime: ScreenTime,
+    private val reservedSeat: ReservedSeats = ReservedSeats(),
 ) {
-    private val reservedSeat: ReservedSeats = ReservedSeats()
+    fun isSame(screeningSchedule: ScreeningSchedule): Boolean = screenTime.isSame(screeningSchedule.screenTime)
+
+    fun isDuplicatedScreenTime(otherTime: ScreenTime): Boolean = screenTime.isDuplicatedScreenTime(otherTime)
 
     fun isScreeningMovieTitle(title: Title) = movie.isValidTitle(title)
 
     fun isScreeningDate(date: LocalDate) = screenTime.isScreeningAt(date)
 
-    fun addReserveSeat(positions: List<SeatPosition>) {
-        positions.forEach { reservedSeat.addSeat(it) }
-    }
+    fun addReserveSeat(positions: List<SeatPosition>): ScreeningSchedule =
+        ScreeningSchedule(
+            movie = movie,
+            screen = screen,
+            screenTime = screenTime,
+            reservedSeat = reservedSeat.addSeat(positions),
+        )
 
     fun makeReservation(positions: List<SeatPosition>): Reservation {
+        positions.forEach { require(!reservedSeat.isReservedSeatPosition(it)) { "이미 예약된 좌석 입니다." } }
         val seats = positions.map { screen.findSeat(it) }
         return Reservation(
             movie = movie,

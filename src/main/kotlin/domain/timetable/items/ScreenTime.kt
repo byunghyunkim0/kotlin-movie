@@ -12,6 +12,9 @@ class ScreenTime(
 
     fun getDate(): LocalDate = screeningDate
 
+    fun isSame(otherTime: ScreenTime): Boolean =
+        startTime == otherTime.startTime && endTime == otherTime.endTime && screeningDate == otherTime.screeningDate
+
     fun isContainsTime(time: LocalTime): Boolean = time in startTime..endTime
 
     fun isScreeningAt(date: LocalDate): Boolean = screeningDate == date
