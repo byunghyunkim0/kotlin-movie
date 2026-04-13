@@ -36,11 +36,11 @@ fun main() {
         PriceDiscountCalculator(
             policies =
                 listOf(
-                    EarlyAndLateDiscountPolicy(
-                        timeDiscountCondition = TimeCondition(),
-                    ),
                     MovieDayDiscountPolicy(
                         timeDiscountCondition = DateCondition(),
+                    ),
+                    EarlyAndLateDiscountPolicy(
+                        timeDiscountCondition = TimeCondition(),
                     ),
                 ),
         )
