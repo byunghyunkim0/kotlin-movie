@@ -94,8 +94,8 @@ class ReservationsTest {
                         screeningDate = LocalDate.of(2026, 4, 10),
                     ),
             )
-        reservations.addReservation(reservation)
-        assertThrows<IllegalArgumentException> { reservations.addReservation(newReservation) }
+        val newReservations = reservations.addReservation(reservation)
+        assertThrows<IllegalArgumentException> { newReservations.addReservation(newReservation) }
     }
 
     private fun createReservation(screenTime: ScreenTime) =

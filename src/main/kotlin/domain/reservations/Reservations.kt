@@ -7,14 +7,14 @@ import domain.reservations.items.Reservation
 import kotlin.collections.fold
 
 class Reservations(
-    private val reservations: MutableList<Reservation> = mutableListOf(),
+    private val reservations: List<Reservation> = emptyList(),
 ) {
-    fun addReservation(reservation: Reservation) {
+    fun addReservation(reservation: Reservation): Reservations {
         val duplicated = reservations.any { it.isDuplicatedReservation(reservation) }
 
         require(!duplicated) { "선택하신 상영 시간이 겹칩니다." }
 
-        reservations.add(reservation)
+        return Reservations(reservations + reservation)
     }
 
     fun calculateTotalDiscountPrice(priceDiscountCalculator: PriceDiscountCalculator): Money {

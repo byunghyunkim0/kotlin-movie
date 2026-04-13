@@ -14,6 +14,7 @@ class MovieReservationController(
     private val payCalculator: PayCalculator,
     private val timeTable: TimeTable,
     private var point: Point,
+    private var reservations: Reservations = Reservations()
 ) {
     fun run() {
         try {
@@ -24,14 +25,12 @@ class MovieReservationController(
             return run()
         }
 
-        val reservations = Reservations()
+        reserveMovie()
 
-        reserveMovie(reservations)
-
-        processPayment(reservations)
+        processPayment()
     }
 
-    private fun reserveMovie(reservations: Reservations) {
+    private fun reserveMovie() {
         try {
             val title = Title(InputView.readMovieTitle())
             val date = readDateWithLocalDate()
@@ -48,23 +47,23 @@ class MovieReservationController(
                     SeatPosition.of(it)
                 }
             val reservation = selectedSchedule.makeReservation(seatInput)
-            reservations.addReservation(reservation)
+            reservations = reservations.addReservation(reservation)
 
             selectedSchedule.addReserveSeat(seatInput)
 
             OutputView.printCartAdded(reservation.toDto())
         } catch (e: Exception) {
             println("[ERROR] ${e.message}")
-            return reserveMovie(reservations)
+            return reserveMovie()
         }
 
         val isContinue = InputView.readAddMovie()
-        if (isContinue) return reserveMovie(reservations)
+        if (isContinue) return reserveMovie()
 
         OutputView.printCartList(reservations.toReservationDtoList())
     }
 
-    private fun processPayment(reservations: Reservations) {
+    private fun processPayment() {
         try {
             val usePoint = InputView.readUsePoint()
 
@@ -92,7 +91,7 @@ class MovieReservationController(
             )
         } catch (e: Exception) {
             println(e.message)
-            return processPayment(reservations)
+            return processPayment()
         }
     }
 
