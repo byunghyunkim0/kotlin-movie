@@ -10,8 +10,5 @@ class PayMethodDiscountCalculator(
     fun calculate(
         price: Money,
         payMethod: PayMethod,
-    ): Money {
-        val policy = policies[payMethod]
-        return policy?.applyDiscount(price, payMethod) ?: price
-    }
+    ): Money = policies[payMethod]?.applyDiscount(price) ?: price
 }

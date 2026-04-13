@@ -1,8 +1,6 @@
 package domain.paycalculator.items
 
-import domain.discountpolicy.CardCondition
 import domain.discountpolicy.CardDiscountPolicy
-import domain.discountpolicy.CashCondition
 import domain.discountpolicy.CashDiscountPolicy
 import domain.discountpolicy.PayMethod
 import domain.money.Money
@@ -11,13 +9,9 @@ import org.junit.jupiter.api.Test
 
 class PayMethodDiscountCalculatorTest {
     val cardDiscountPolicy =
-        CardDiscountPolicy(
-            payMethodDiscountCondition = CardCondition(),
-        )
+        CardDiscountPolicy()
     val cashDiscountPolicy =
-        CashDiscountPolicy(
-            payMethodDiscountCondition = CashCondition(),
-        )
+        CashDiscountPolicy()
 
     @Test
     fun `입력받은 금액을 입력받은 결제 방식을 적용한 결제 금액을 반환한다`() {

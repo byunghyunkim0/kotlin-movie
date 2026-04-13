@@ -1,8 +1,6 @@
 package domain.paycalculator
 
-import domain.discountpolicy.CardCondition
 import domain.discountpolicy.CardDiscountPolicy
-import domain.discountpolicy.CashCondition
 import domain.discountpolicy.CashDiscountPolicy
 import domain.discountpolicy.DateCondition
 import domain.discountpolicy.EarlyAndLateDiscountPolicy
@@ -34,13 +32,9 @@ import java.time.LocalTime
 
 class PayCalculatorTest {
     val cardDiscountPolicy =
-        CardDiscountPolicy(
-            payMethodDiscountCondition = CardCondition(),
-        )
+        CardDiscountPolicy()
     val cashDiscountPolicy =
-        CashDiscountPolicy(
-            payMethodDiscountCondition = CashCondition(),
-        )
+        CashDiscountPolicy()
     val payMethodPolicies =
         mapOf(
             PayMethod.CARD to cardDiscountPolicy,

@@ -1,7 +1,5 @@
 import controller.MovieReservationController
-import domain.discountpolicy.CardCondition
 import domain.discountpolicy.CardDiscountPolicy
-import domain.discountpolicy.CashCondition
 import domain.discountpolicy.CashDiscountPolicy
 import domain.discountpolicy.DateCondition
 import domain.discountpolicy.EarlyAndLateDiscountPolicy
@@ -51,13 +49,9 @@ fun main() {
             policies =
                 mapOf(
                     PayMethod.CARD to
-                        CardDiscountPolicy(
-                            payMethodDiscountCondition = CardCondition(),
-                        ),
+                        CardDiscountPolicy(),
                     PayMethod.CASH to
-                        CashDiscountPolicy(
-                            payMethodDiscountCondition = CashCondition(),
-                        ),
+                        CashDiscountPolicy(),
                 ),
         )
 

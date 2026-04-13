@@ -9,14 +9,11 @@ class PayMethodDiscountPolicyTest {
     fun `카드 결제시 5% 할인한 금액을 반환한다`() {
         val payMethod = PayMethod.CARD
 
-        val discountPolicy =
-            CardDiscountPolicy(
-                payMethodDiscountCondition = CardCondition(),
-            )
+        val discountPolicy = CardDiscountPolicy()
 
         val money = Money(10000)
 
-        val result = discountPolicy.applyDiscount(money, payMethod)
+        val result = discountPolicy.applyDiscount(money)
 
         assertThat(result).isEqualTo(Money(9500))
     }
@@ -26,13 +23,11 @@ class PayMethodDiscountPolicyTest {
         val payMethod = PayMethod.CASH
 
         val discountPolicy =
-            CashDiscountPolicy(
-                payMethodDiscountCondition = CashCondition(),
-            )
+            CashDiscountPolicy()
 
         val money = Money(10000)
 
-        val result = discountPolicy.applyDiscount(money, payMethod)
+        val result = discountPolicy.applyDiscount(money)
 
         assertThat(result).isEqualTo(Money(9800))
     }
