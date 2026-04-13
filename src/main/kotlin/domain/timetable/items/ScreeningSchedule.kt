@@ -47,9 +47,10 @@ class ScreeningSchedule(
                     .sortedBy { it.getColumn() }
                     .map { seat ->
                         if (reservedSeat.isReservedSeatPosition(SeatPosition.of(seat.getName()))) {
-                            "XX"
+                            "X"
+                        } else {
+                            seat.getSeatGradeName()
                         }
-                        seat.getSeatGradeName()
                     }
             }
     }
