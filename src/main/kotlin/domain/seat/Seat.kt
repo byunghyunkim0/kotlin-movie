@@ -3,6 +3,7 @@ package domain.seat
 import domain.money.Money
 import domain.seat.items.SeatGrade
 import domain.seat.items.SeatPosition
+import domain.seat.items.toDisplaySeatGrade
 
 class Seat(
     private val seatPosition: SeatPosition,
@@ -18,5 +19,5 @@ class Seat(
 
     fun getName(): String = seatPosition.getName()
 
-    fun getSeatGradeName(): String = seatGrade.getGradeName()
+    fun getSeatGradeName(): String = seatGrade.toDisplaySeatGrade()
 }

@@ -18,9 +18,6 @@ import domain.point.Point
 import domain.reservations.Reservations
 import domain.reservations.items.Reservation
 import domain.seat.Seat
-import domain.seat.items.GradeA
-import domain.seat.items.GradeB
-import domain.seat.items.GradeS
 import domain.seat.items.SeatGrade
 import domain.seat.items.SeatPosition
 import domain.timetable.items.ScreenTime
@@ -124,9 +121,9 @@ class PayCalculatorTest {
             Seats(
                 seats =
                     listOf(
-                        createSeat(GradeB()),
-                        createSeat(GradeA()),
-                        createSeat(GradeS()),
+                        createSeat(SeatGrade.B),
+                        createSeat(SeatGrade.A),
+                        createSeat(SeatGrade.S),
                     ),
             ),
     )

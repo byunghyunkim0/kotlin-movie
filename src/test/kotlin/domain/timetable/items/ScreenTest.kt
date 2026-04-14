@@ -2,10 +2,8 @@ package domain.timetable.items
 
 import domain.seat.Seat
 import domain.seat.items.ColumnNumber
-import domain.seat.items.GradeA
-import domain.seat.items.GradeB
-import domain.seat.items.GradeS
 import domain.seat.items.RowNumber
+import domain.seat.items.SeatGrade
 import domain.seat.items.SeatPosition
 import domain.timetable.items.ScreenSeatMock.seats
 import org.assertj.core.api.Assertions.assertThat
@@ -45,9 +43,9 @@ object ScreenSeatMock {
             col.map { col ->
                 val grade =
                     when (row) {
-                        "A", "B" -> GradeB()
-                        "C", "D" -> GradeS()
-                        else -> GradeA()
+                        "A", "B" -> SeatGrade.B
+                        "C", "D" -> SeatGrade.S
+                        else -> SeatGrade.A
                     }
                 Seat(
                     seatPosition =

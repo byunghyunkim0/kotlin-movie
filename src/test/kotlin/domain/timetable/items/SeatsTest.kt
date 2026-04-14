@@ -3,7 +3,6 @@ package domain.timetable.items
 import domain.money.Money
 import domain.seat.Seat
 import domain.seat.items.ColumnNumber
-import domain.seat.items.GradeB
 import domain.seat.items.RowNumber
 import domain.seat.items.SeatGrade
 import domain.seat.items.SeatPosition
@@ -78,7 +77,7 @@ class SeatsTest {
     private fun createSeat(
         rowNumber: RowNumber = RowNumber("A"),
         columnNumber: ColumnNumber = ColumnNumber(1),
-        grade: SeatGrade = GradeB(),
+        grade: SeatGrade = SeatGrade.B,
     ) = Seat(
         seatPosition =
             SeatPosition(

@@ -2,10 +2,8 @@ package domain.seat
 
 import domain.money.Money
 import domain.seat.items.ColumnNumber
-import domain.seat.items.GradeA
-import domain.seat.items.GradeB
-import domain.seat.items.GradeS
 import domain.seat.items.RowNumber
+import domain.seat.items.SeatGrade
 import domain.seat.items.SeatPosition
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -20,7 +18,7 @@ class SeatTest {
                         RowNumber("A"),
                         ColumnNumber(1),
                     ),
-                seatGrade = GradeS(),
+                seatGrade = SeatGrade.S,
             )
 
         val result = seat.isExistSeatPosition(SeatPosition.of("A1"))
@@ -37,7 +35,7 @@ class SeatTest {
                         RowNumber("A"),
                         ColumnNumber(1),
                     ),
-                seatGrade = GradeS(),
+                seatGrade = SeatGrade.S,
             )
 
         val result = seat.isExistSeatPosition(SeatPosition.of("B2"))
@@ -54,7 +52,7 @@ class SeatTest {
                         RowNumber("A"),
                         ColumnNumber(1),
                     ),
-                seatGrade = GradeS(),
+                seatGrade = SeatGrade.S,
             )
         val initMoney = Money(0)
         val result = seat.addSeatPrice(initMoney)
@@ -70,7 +68,7 @@ class SeatTest {
                         RowNumber("A"),
                         ColumnNumber(1),
                     ),
-                seatGrade = GradeA(),
+                seatGrade = SeatGrade.A,
             )
         val initMoney = Money(0)
         val result = seat.addSeatPrice(initMoney)
@@ -86,7 +84,7 @@ class SeatTest {
                         RowNumber("A"),
                         ColumnNumber(1),
                     ),
-                seatGrade = GradeB(),
+                seatGrade = SeatGrade.B,
             )
         val initMoney = Money(0)
         val result = seat.addSeatPrice(initMoney)
