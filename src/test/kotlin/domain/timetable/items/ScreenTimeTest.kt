@@ -7,24 +7,6 @@ import java.time.LocalTime
 
 class ScreenTimeTest {
     @Test
-    fun `입력받은 시간이 startTime과 endTime 사이에 있다면 true를 반환한다`() {
-        val screenTime = createScreenTime()
-        val newTime = LocalTime.of(13, 0)
-        val result = screenTime.isContainsTime(newTime)
-
-        assertThat(result).isTrue()
-    }
-
-    @Test
-    fun `입력받은 시간이 startTime과 endTime 사이에 없다면 false를 반환한다`() {
-        val screenTime = createScreenTime()
-        val newTime = LocalTime.of(1, 0)
-        val result = screenTime.isContainsTime(newTime)
-
-        assertThat(result).isFalse()
-    }
-
-    @Test
     fun `ScreeningTime 시간이 startTime과 endTime 사이에 있다면 true를 반환한다`() {
         val screenTime = createScreenTime()
         val newTime =

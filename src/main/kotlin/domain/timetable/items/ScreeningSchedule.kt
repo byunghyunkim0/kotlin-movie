@@ -16,7 +16,7 @@ class ScreeningSchedule(
 ) {
     fun isSameMovie(otherMovie: Movie): Boolean = movie.isSame(otherMovie)
 
-    fun isSame(otherTime: ScreenTime): Boolean = screenTime.isSame(otherTime)
+    fun isSameTime(otherTime: ScreenTime): Boolean = screenTime.isSame(otherTime)
 
     fun isDuplicatedScreenTime(otherTime: ScreenTime): Boolean = screenTime.isDuplicatedScreenTime(otherTime)
 
@@ -24,7 +24,7 @@ class ScreeningSchedule(
 
     fun isScreeningDate(date: LocalDate) = screenTime.isScreeningAt(date)
 
-    fun addReserveSeat(positions: List<SeatPosition>): ScreeningSchedule =
+    fun addReservedSeat(positions: List<SeatPosition>): ScreeningSchedule =
         ScreeningSchedule(
             movie = movie,
             screen = screen,

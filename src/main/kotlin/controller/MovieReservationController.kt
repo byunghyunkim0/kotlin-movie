@@ -41,7 +41,7 @@ class MovieReservationController(
             val scheduleNumber = InputView.readScheduleNumber()
             val selectedSchedule = schedule.selectSchedule(scheduleNumber)
 
-            reservations.isCheckScreenTime(selectedSchedule)
+            reservations.validateScreenTime(selectedSchedule)
 
             OutputView.printSeatMap(selectedSchedule.getSeatLayout())
             val seatInput =

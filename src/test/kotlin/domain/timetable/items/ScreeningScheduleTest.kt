@@ -54,7 +54,7 @@ class ScreeningScheduleTest {
 
         val seat = listOf(SeatPosition.of("A1"))
 
-        assertDoesNotThrow { schedule.addReserveSeat(seat) }
+        assertDoesNotThrow { schedule.addReservedSeat(seat) }
     }
 
     @Test

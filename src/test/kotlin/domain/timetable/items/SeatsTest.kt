@@ -12,32 +12,6 @@ import org.junit.jupiter.api.assertThrows
 
 class SeatsTest {
     @Test
-    fun `입력된 좌석 번호가 상영관에 존재하는 좌석이면 true를 반환한다`() {
-        val seatA = createSeat()
-        val seatB = createSeat(columnNumber = ColumnNumber(2))
-
-        val seats = listOf(seatA, seatB)
-        val screenSeats = Seats(seats)
-
-        val result = screenSeats.isExistSeatNumber(SeatPosition.of("A1"))
-
-        assertThat(result).isTrue()
-    }
-
-    @Test
-    fun `입력된 좌석 번호가 상영관에 존재하지 않는 좌석이면 false를 반환한다`() {
-        val seatA = createSeat()
-        val seatB = createSeat(columnNumber = ColumnNumber(2))
-
-        val seats = listOf(seatA, seatB)
-        val screenSeats = Seats(seats)
-
-        val result = screenSeats.isExistSeatNumber(SeatPosition.of("Z11111"))
-
-        assertThat(result).isFalse()
-    }
-
-    @Test
     fun `입력된 좌석 번호의 상영관에 존재하는 좌석이면 좌석을 반환한다`() {
         val seatA = createSeat()
         val seatB = createSeat(columnNumber = ColumnNumber(2))

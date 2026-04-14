@@ -26,7 +26,7 @@ class ScreeningPeriodTest {
             )
 
         val result =
-            screeningPeriod.isContain(
+            screeningPeriod.contains(
                 LocalDate.of(
                     2026,
                     4,
@@ -46,7 +46,7 @@ class ScreeningPeriodTest {
             )
 
         val result =
-            screeningPeriod.isContain(
+            screeningPeriod.contains(
                 LocalDate.of(
                     2025,
                     4,

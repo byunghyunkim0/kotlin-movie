@@ -24,7 +24,7 @@ class Reservations(
         return Reservations(reservations + reservation)
     }
 
-    fun isCheckScreenTime(screeningSchedule: ScreeningSchedule) {
+    fun validateScreenTime(screeningSchedule: ScreeningSchedule) {
         val duplicated = reservations.any { it.isDuplicatedScreenTime(screeningSchedule) }
         require(!duplicated) { "선택하신 상영 시간이 겹칩니다. 다른 시간을 선택해 주세요." }
     }

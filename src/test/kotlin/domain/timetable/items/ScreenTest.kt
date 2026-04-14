@@ -8,30 +8,30 @@ import domain.seat.items.SeatPosition
 import domain.timetable.items.ScreenSeatMock.seats
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class ScreenTest {
     @Test
-    fun `입력된 좌석 번호가 상영관에 존재하는 좌석이면 true가 반환된다`() {
+    fun `입력된 좌석 번호가 상영관에 존재하는 좌석이면 해당 좌석을 반환한다`() {
         val screen =
             Screen(
                 seats = Seats(seats),
                 name = ScreenName("1관"),
             )
 
-        val result = screen.isExistSeat(SeatPosition.of("A1"))
-        assertThat(result).isTrue()
+        val result = screen.findSeat(SeatPosition.of("A1"))
+        assertThat(result).isInstanceOf(Seat::class.java)
     }
 
     @Test
-    fun `입력된 좌석 번호가 상영관에 존재하지 않는 좌석이면 false가 반환된다`() {
+    fun `입력된 좌석 번호가 상영관에 존재하지 않는 좌석이면 예외를 발생시킨다`() {
         val screen =
             Screen(
                 seats = Seats(seats),
                 name = ScreenName("1관"),
             )
 
-        val result = screen.isExistSeat(SeatPosition.of("F1"))
-        assertThat(result).isFalse()
+        assertThrows<IllegalArgumentException> { screen.findSeat(SeatPosition.of("F1")) }
     }
 }
 

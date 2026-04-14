@@ -8,8 +8,6 @@ class Screen(
     private val name: ScreenName,
     private val seats: Seats,
 ) {
-    fun isExistSeat(number: SeatPosition): Boolean = seats.isExistSeatNumber(number)
-
     fun findSeat(position: SeatPosition): Seat = seats.findSeat(position)
 
     fun getLayout(reservedSeats: ReservedSeats): List<List<SeatStatusDto>> = seats.getLayout(reservedSeats)

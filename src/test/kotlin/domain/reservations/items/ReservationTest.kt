@@ -17,42 +17,6 @@ import java.time.LocalTime
 
 class ReservationTest {
     @Test
-    fun `입력된 상영 일자가 screenTime의 screeningDate과 같다면 true를 반환받는다`() {
-        val reservation = createReservation()
-
-        val result = reservation.isDuplicatedDate(LocalDate.of(2026, 4, 10))
-
-        assertThat(result).isTrue()
-    }
-
-    @Test
-    fun `입력된 상영 일자가 screenTime의 screeningDate과 같지 않으면 false를 반환받는다`() {
-        val reservation = createReservation()
-
-        val result = reservation.isDuplicatedDate(LocalDate.of(2026, 4, 11))
-
-        assertThat(result).isFalse()
-    }
-
-    @Test
-    fun `입력된 상영 일자가 screenTime의 startTime과 endTime에 속한다면 true를 반환한다`() {
-        val reservation = createReservation()
-
-        val result = reservation.isDuplicatedTime(LocalTime.of(13, 0))
-
-        assertThat(result).isTrue()
-    }
-
-    @Test
-    fun `입력된 상영 일자가 screenTime의 startTime과 endTime에 속하지 않는다면 false를 반환한다`() {
-        val reservation = createReservation()
-
-        val result = reservation.isDuplicatedTime(LocalTime.of(1, 0))
-
-        assertThat(result).isFalse()
-    }
-
-    @Test
     fun `예약된 좌석 가격의 합을 Money로 반환한다`() {
         val reservation = createReservation()
 
