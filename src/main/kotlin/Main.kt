@@ -32,15 +32,8 @@ fun main() {
     val userPoint = Point(10000)
     val priceDiscountCalculator =
         PriceDiscountCalculator(
-            policies =
-                listOf(
-                    MovieDayDiscountPolicy(
-                        timeDiscountCondition = DateCondition(),
-                    ),
-                    EarlyAndLateDiscountPolicy(
-                        timeDiscountCondition = TimeCondition(),
-                    ),
-                ),
+            movieDayDiscountPolicy = MovieDayDiscountPolicy(timeDiscountCondition = DateCondition()),
+            timeDiscountPolicy = EarlyAndLateDiscountPolicy(timeDiscountCondition = TimeCondition()),
         )
     val payMethodDiscountCalculator =
         PayMethodDiscountCalculator(

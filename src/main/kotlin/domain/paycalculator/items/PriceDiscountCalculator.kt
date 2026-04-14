@@ -1,17 +1,19 @@
 package domain.paycalculator.items
 
-import domain.discountpolicy.TimeDiscountPolicy
+import domain.discountpolicy.EarlyAndLateDiscountPolicy
+import domain.discountpolicy.MovieDayDiscountPolicy
 import domain.money.Money
 import domain.timetable.items.ScreenTime
 
 class PriceDiscountCalculator(
-    private val policies: List<TimeDiscountPolicy>,
+    private val movieDayDiscountPolicy: MovieDayDiscountPolicy,
+    private val timeDiscountPolicy: EarlyAndLateDiscountPolicy,
 ) {
     fun calculate(
         price: Money,
         screenTime: ScreenTime,
-    ): Money =
-        policies.fold(price) { totalPrice, policy ->
-            policy.applyDiscount(totalPrice, screenTime)
-        }
+    ): Money {
+        val movieDayPrice = movieDayDiscountPolicy.applyDiscount(price, screenTime)
+        return timeDiscountPolicy.applyDiscount(movieDayPrice, screenTime)
+    }
 }

@@ -42,11 +42,10 @@ class PriceDiscountCalculatorTest {
                 endTime = LocalTime.of(15, 0),
                 screeningDate = LocalDate.of(2026, 4, 10),
             )
-        val policies = listOf(dateDiscountPolicy, timeDiscountPolicy)
-
         val priceDiscountCalculator =
             PriceDiscountCalculator(
-                policies = policies,
+                movieDayDiscountPolicy = dateDiscountPolicy,
+                timeDiscountPolicy = timeDiscountPolicy,
             )
 
         val money = Money(10_000)
@@ -73,7 +72,8 @@ class PriceDiscountCalculatorTest {
 
         val priceDiscountCalculator =
             PriceDiscountCalculator(
-                policies = listOf(timeDiscountPolicy),
+                movieDayDiscountPolicy = dateDiscountPolicy,
+                timeDiscountPolicy = timeDiscountPolicy,
             )
 
         val money = Money(10_000)
@@ -94,7 +94,8 @@ class PriceDiscountCalculatorTest {
 
         val priceDiscountCalculator =
             PriceDiscountCalculator(
-                policies = listOf(timeDiscountPolicy),
+                movieDayDiscountPolicy = dateDiscountPolicy,
+                timeDiscountPolicy = timeDiscountPolicy,
             )
 
         val money = Money(10_000)
@@ -108,14 +109,15 @@ class PriceDiscountCalculatorTest {
     fun `입력받은 금액을 영화 시작 날자가 10일이면 10% 할인된 금액을 반환한다`() {
         val screenTime =
             ScreenTime(
-                startTime = LocalTime.of(21, 0),
-                endTime = LocalTime.of(23, 0),
+                startTime = LocalTime.of(13, 0),
+                endTime = LocalTime.of(15, 0),
                 screeningDate = LocalDate.of(2026, 4, 10),
             )
 
         val priceDiscountCalculator =
             PriceDiscountCalculator(
-                policies = listOf(dateDiscountPolicy),
+                movieDayDiscountPolicy = dateDiscountPolicy,
+                timeDiscountPolicy = timeDiscountPolicy,
             )
 
         val money = Money(10_000)
@@ -129,14 +131,15 @@ class PriceDiscountCalculatorTest {
     fun `입력받은 금액을 영화 시작 날자가 20일이면 10% 할인된 금액을 반환한다`() {
         val screenTime =
             ScreenTime(
-                startTime = LocalTime.of(21, 0),
-                endTime = LocalTime.of(23, 0),
+                startTime = LocalTime.of(13, 0),
+                endTime = LocalTime.of(15, 0),
                 screeningDate = LocalDate.of(2026, 4, 20),
             )
 
         val priceDiscountCalculator =
             PriceDiscountCalculator(
-                policies = listOf(dateDiscountPolicy),
+                movieDayDiscountPolicy = dateDiscountPolicy,
+                timeDiscountPolicy = timeDiscountPolicy,
             )
 
         val money = Money(10_000)
@@ -150,14 +153,15 @@ class PriceDiscountCalculatorTest {
     fun `입력받은 금액을 영화 시작 날자가 30일이면 10% 할인된 금액을 반환한다`() {
         val screenTime =
             ScreenTime(
-                startTime = LocalTime.of(21, 0),
-                endTime = LocalTime.of(23, 0),
+                startTime = LocalTime.of(13, 0),
+                endTime = LocalTime.of(15, 0),
                 screeningDate = LocalDate.of(2026, 4, 30),
             )
 
         val priceDiscountCalculator =
             PriceDiscountCalculator(
-                policies = listOf(dateDiscountPolicy),
+                movieDayDiscountPolicy = dateDiscountPolicy,
+                timeDiscountPolicy = timeDiscountPolicy,
             )
 
         val money = Money(10_000)
@@ -176,17 +180,16 @@ class PriceDiscountCalculatorTest {
                 screeningDate = LocalDate.of(2026, 4, 10),
             )
 
-        val policies = listOf(timeDiscountPolicy, dateDiscountPolicy)
-
         val priceDiscountCalculator =
             PriceDiscountCalculator(
-                policies = policies,
+                movieDayDiscountPolicy = dateDiscountPolicy,
+                timeDiscountPolicy = timeDiscountPolicy,
             )
 
         val money = Money(10_000)
 
         val result = priceDiscountCalculator.calculate(money, screenTime)
 
-        assertThat(result).isEqualTo(Money(7_200))
+        assertThat(result).isEqualTo(Money(7_000))
     }
 }

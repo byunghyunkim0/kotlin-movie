@@ -58,7 +58,8 @@ class PayCalculatorTest {
                     ),
                 priceDiscountCalculator =
                     PriceDiscountCalculator(
-                        policies = timePolicies,
+                        movieDayDiscountPolicy = dateDiscountPolicy,
+                        timeDiscountPolicy = timeDiscountPolicy,
                     ),
             )
         val inputPoint = Point(2000)
