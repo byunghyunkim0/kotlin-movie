@@ -15,6 +15,13 @@ class Reservation(
     private val screenTime: ScreenTime,
     private val seats: Seats,
 ) {
+    fun toUpdatedSchedule(screeningSchedule: ScreeningSchedule): ScreeningSchedule {
+        if (!screeningSchedule.isSame(screenTime) || !screeningSchedule.isSameMovie(movie)) {
+            return screeningSchedule
+        }
+        return screeningSchedule.addReserveSeat(seats.toSeatPositions())
+    }
+
     fun isDuplicatedScreenTime(otherSchedule: ScreeningSchedule): Boolean = otherSchedule.isDuplicatedScreenTime(screenTime)
 
     fun isDuplicatedDate(date: LocalDate): Boolean = screenTime.isScreeningAt(date)

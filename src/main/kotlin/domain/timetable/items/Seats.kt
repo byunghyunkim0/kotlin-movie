@@ -7,6 +7,8 @@ import domain.seat.items.SeatPosition
 class Seats(
     private val seats: List<Seat>,
 ) {
+    fun toSeatPositions(): List<SeatPosition> = seats.map { it.toSeatPosition() }
+
     fun isExistSeatNumber(seatNumber: SeatPosition): Boolean = seats.any { it.isExistSeatPosition(seatNumber) }
 
     fun findSeat(seatNumber: SeatPosition): Seat =

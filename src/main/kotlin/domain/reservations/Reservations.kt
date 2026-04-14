@@ -4,12 +4,18 @@ import domain.dto.ReservationDto
 import domain.money.Money
 import domain.paycalculator.items.PriceDiscountCalculator
 import domain.reservations.items.Reservation
+import domain.timetable.TimeTable
 import domain.timetable.items.ScreeningSchedule
 import kotlin.collections.fold
 
 class Reservations(
     private val reservations: List<Reservation> = emptyList(),
 ) {
+    fun toUpdatedTimeTable(timeTable: TimeTable): TimeTable =
+        reservations.fold(timeTable) { table, reservation ->
+            table.reserve(reservation)
+        }
+
     fun addReservation(reservation: Reservation): Reservations {
         val duplicated = reservations.any { it.isDuplicatedReservation(reservation) }
 

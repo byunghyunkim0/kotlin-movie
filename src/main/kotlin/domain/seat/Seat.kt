@@ -9,6 +9,8 @@ class Seat(
     private val seatPosition: SeatPosition,
     private val seatGrade: SeatGrade,
 ) {
+    fun toSeatPosition() = seatPosition
+
     fun isExistSeatPosition(otherSeatPosition: SeatPosition): Boolean = seatPosition.isExistSeatPosition(otherSeatPosition)
 
     fun addSeatPrice(money: Money): Money = seatGrade.addPrice(money)

@@ -6,7 +6,6 @@ import domain.point.Point
 import domain.reservations.Reservations
 import domain.seat.items.SeatPosition
 import domain.timetable.TimeTable
-import domain.timetable.items.ScreeningSchedule
 import view.InputView
 import view.OutputView
 import java.time.LocalDate
@@ -16,7 +15,6 @@ class MovieReservationController(
     private var timeTable: TimeTable,
     private var point: Point,
     private var reservations: Reservations = Reservations(),
-    private var selectedSeats: List<Pair<ScreeningSchedule, List<SeatPosition>>> = emptyList(),
 ) {
     fun run() {
         try {
@@ -54,9 +52,7 @@ class MovieReservationController(
 
             reservations = reservations.addReservation(reservation)
 
-            selectedSeats = selectedSeats + listOf(Pair(selectedSchedule, seatInput))
-
-            OutputView.printCartAdded(reservation.toDto())
+            OutputView.printReservationsAdded(reservation.toDto())
         } catch (e: Exception) {
             println("[ERROR] ${e.message}")
             return reserveMovie()
@@ -65,7 +61,7 @@ class MovieReservationController(
         val isContinue = InputView.readAddMovie()
         if (isContinue) return reserveMovie()
 
-        OutputView.printCartList(reservations.toReservationDtoList())
+        OutputView.printReservationsList(reservations.toReservationDtoList())
     }
 
     private fun processPayment() {
@@ -89,9 +85,7 @@ class MovieReservationController(
 
             point = point.subtractPoint(Point(usePoint))
 
-            selectedSeats.forEach {
-                timeTable = timeTable.addSchedule(it.first, it.second)
-            }
+            timeTable = reservations.toUpdatedTimeTable(timeTable)
 
             OutputView.printFinalReceipt(
                 items = reservations.toReservationDtoList(),

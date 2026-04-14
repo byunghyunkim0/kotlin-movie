@@ -22,12 +22,12 @@ object OutputView {
         }
     }
 
-    fun printCartAdded(item: ReservationDto) {
+    fun printReservationsAdded(item: ReservationDto) {
         println("\n장바구니에 추가됨")
         println("- [${item.title}] ${item.dateTime}  좌석: ${item.seats}")
     }
 
-    fun printCartList(items: List<ReservationDto>) {
+    fun printReservationsList(items: List<ReservationDto>) {
         println("\n장바구니")
         items.forEach { item ->
             println("- [${item.title}] ${item.dateTime}  좌석: ${item.seats}")

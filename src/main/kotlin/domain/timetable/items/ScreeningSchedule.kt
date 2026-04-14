@@ -13,7 +13,9 @@ class ScreeningSchedule(
     private val screenTime: ScreenTime,
     private val reservedSeat: ReservedSeats = ReservedSeats(),
 ) {
-    fun isSame(screeningSchedule: ScreeningSchedule): Boolean = screenTime.isSame(screeningSchedule.screenTime)
+    fun isSameMovie(otherMovie: Movie): Boolean = movie.isSame(otherMovie)
+
+    fun isSame(otherTime: ScreenTime): Boolean = screenTime.isSame(otherTime)
 
     fun isDuplicatedScreenTime(otherTime: ScreenTime): Boolean = screenTime.isDuplicatedScreenTime(otherTime)
 
