@@ -1,5 +1,6 @@
 package domain.timetable.items
 
+import domain.dto.SeatStatusDto
 import domain.seat.Seat
 import domain.seat.items.SeatPosition
 
@@ -11,7 +12,7 @@ class Screen(
 
     fun findSeat(position: SeatPosition): Seat = seats.findSeat(position)
 
-    fun getSeats() = seats.getSeats()
+    fun getLayout(reservedSeats: ReservedSeats): List<List<SeatStatusDto>> = seats.getLayout(reservedSeats)
 }
 
 @JvmInline

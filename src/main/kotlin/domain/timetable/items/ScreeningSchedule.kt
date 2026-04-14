@@ -1,6 +1,7 @@
 package domain.timetable.items
 
 import domain.dto.ScreeningScheduleDto
+import domain.dto.SeatStatusDto
 import domain.movie.Movie
 import domain.movie.itmes.Title
 import domain.reservations.items.Reservation
@@ -46,22 +47,5 @@ class ScreeningSchedule(
             time = screenTime.getStartTime().toString(),
         )
 
-    fun getSeatLayout(): List<List<String>> {
-        val seats = screen.getSeats()
-        return seats
-            .groupBy { it.getRow() }
-            .toSortedMap()
-            .values
-            .map { rowSeats ->
-                rowSeats
-                    .sortedBy { it.getColumn() }
-                    .map { seat ->
-                        if (reservedSeat.isReservedSeatPosition(SeatPosition.of(seat.getName()))) {
-                            "X"
-                        } else {
-                            seat.getSeatGradeName()
-                        }
-                    }
-            }
-    }
+    fun getSeatLayout(): List<List<SeatStatusDto>> = screen.getLayout(reservedSeat)
 }

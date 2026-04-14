@@ -1,5 +1,6 @@
 package domain.timetable.items
 
+import domain.dto.SeatStatusDto
 import domain.money.Money
 import domain.seat.Seat
 import domain.seat.items.SeatPosition
@@ -22,4 +23,18 @@ class Seats(
     }
 
     fun getSeats() = seats
+
+    fun getLayout(reservedSeats: ReservedSeats): List<List<SeatStatusDto>> =
+        seats
+            .groupBy { it.getRow() }
+            .toSortedMap()
+            .values
+            .map { row ->
+                row
+                    .sortedBy { it.getColumn() }
+                    .map { seat ->
+                        val isReserved = reservedSeats.isReservedSeatPosition(seat.toSeatPosition())
+                        seat.toSeatDto(isReserved)
+                    }
+            }
 }

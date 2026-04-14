@@ -2,6 +2,7 @@ package view
 
 import domain.dto.ReservationDto
 import domain.dto.ScreeningScheduleDto
+import domain.dto.SeatStatusDto
 
 object OutputView {
     fun printSchedules(schedules: List<ScreeningScheduleDto>) {
@@ -11,26 +12,30 @@ object OutputView {
         }
     }
 
-    fun printSeatMap(seats: List<List<String>>) {
+    fun printSeatMap(seats: List<List<SeatStatusDto>>) {
         println("\n좌석 배치도")
         println("    1    2    3    4")
 
         val rows = listOf('A', 'B', 'C', 'D', 'E')
         for (i in seats.indices) {
-            val rowString = seats[i].joinToString(" ") { "[ $it]" }
+            val rowString =
+                seats[i].joinToString(" ") { seatStatus ->
+                    val seat = if (seatStatus.isReserved) "X" else seatStatus.gradeName
+                    "[ $seat]"
+                }
             println("${rows[i]} $rowString")
         }
     }
 
     fun printReservationsAdded(item: ReservationDto) {
         println("\n장바구니에 추가됨")
-        println("- [${item.title}] ${item.dateTime}  좌석: ${item.seats}")
+        println("- [${item.title}] ${item.dateTime}  좌석: ${item.seats.joinToString(", ")}")
     }
 
     fun printReservationsList(items: List<ReservationDto>) {
         println("\n장바구니")
         items.forEach { item ->
-            println("- [${item.title}] ${item.dateTime}  좌석: ${item.seats}")
+            println("- [${item.title}] ${item.dateTime}  좌석: ${item.seats.joinToString(", ")}")
         }
     }
 

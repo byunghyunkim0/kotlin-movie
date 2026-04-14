@@ -1,5 +1,6 @@
 package domain.seat
 
+import domain.dto.SeatStatusDto
 import domain.money.Money
 import domain.seat.items.SeatGrade
 import domain.seat.items.SeatPosition
@@ -21,5 +22,9 @@ class Seat(
 
     fun getName(): String = seatPosition.getName()
 
-    fun getSeatGradeName(): String = seatGrade.toDisplaySeatGrade()
+    fun toSeatDto(isReserved: Boolean): SeatStatusDto =
+        SeatStatusDto(
+            gradeName = seatGrade.toDisplaySeatGrade(),
+            isReserved = isReserved,
+        )
 }

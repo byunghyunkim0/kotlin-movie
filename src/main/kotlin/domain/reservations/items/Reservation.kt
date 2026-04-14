@@ -45,7 +45,7 @@ class Reservation(
         return ReservationDto(
             title = movie.getMovieTitle(),
             dateTime = "$date $time",
-            seats = seatNames.joinToString(", "),
+            seats = seatNames,
         )
     }
 }
