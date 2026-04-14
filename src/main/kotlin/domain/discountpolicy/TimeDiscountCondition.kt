@@ -9,8 +9,8 @@ interface TimeDiscountCondition {
 
 class TimeCondition : TimeDiscountCondition {
     override fun isSatisfiedBy(screenTime: ScreenTime): Boolean {
-        val isMorning = screenTime.getStartTime() in MORNING_START_TIME..MORNING_END_TIME
-        val isNight = screenTime.getStartTime() in NIGHT_START_TIME..NIGHT_END_TIME
+        val isMorning = screenTime.isStartTimeBetween(MORNING_START_TIME, MORNING_END_TIME)
+        val isNight = screenTime.isStartTimeBetween(NIGHT_START_TIME, NIGHT_END_TIME)
         return isMorning || isNight
     }
 
@@ -23,10 +23,7 @@ class TimeCondition : TimeDiscountCondition {
 }
 
 class DateCondition : TimeDiscountCondition {
-    override fun isSatisfiedBy(screenTime: ScreenTime): Boolean {
-        val day = screenTime.getDate().dayOfMonth
-        return day in DAYS
-    }
+    override fun isSatisfiedBy(screenTime: ScreenTime): Boolean = screenTime.isDayOfMonth(DAYS)
 
     companion object {
         private val DAYS = listOf(10, 20, 30)

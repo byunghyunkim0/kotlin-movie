@@ -8,6 +8,13 @@ class ScreenTime(
     private val endTime: LocalTime,
     private val screeningDate: LocalDate,
 ) {
+    fun isStartTimeBetween(
+        start: LocalTime,
+        end: LocalTime,
+    ): Boolean = startTime in start..end
+
+    fun isDayOfMonth(days: List<Int>): Boolean = screeningDate.dayOfMonth in days
+
     fun getStartTime(): LocalTime = startTime
 
     fun getDate(): LocalDate = screeningDate
