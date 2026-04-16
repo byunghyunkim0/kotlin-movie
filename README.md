@@ -17,10 +17,10 @@
 
 ### 영화
 
-- [ ] id(PK), title, runningTimeMinutes
-- [ ] id를 통해 Movie 정보를 조회할 수 있다
-- [ ] title을 통해 Movie 정보를 조회할 수 있다
-- [ ] Movie 정보를 저장할 수 있다.
+- [x] id(PK), title, runningTimeMinutes
+- [x] id를 통해 Movie 정보를 조회할 수 있다
+- [x] title을 통해 Movie 정보를 조회할 수 있다
+- [x] Movie 정보를 저장할 수 있다.
 
 ### 상영 일정
 
