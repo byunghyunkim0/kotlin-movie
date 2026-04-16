@@ -43,9 +43,9 @@
 
 ### 예약 좌석
 
-- [ ] id(PK), reservation_id(FK), seat_number
-- [ ] id를 통해 예매 좌석을 조회할 수 있다
-- [ ] reservation_id를 통해 예약 좌석들을 조회할 수 있다
+- [x] id(PK), reservation_id(FK), seat_number
+- [x] id를 통해 예매 좌석을 조회할 수 있다
+- [x] reservation_id를 통해 예약 좌석들을 조회할 수 있다
 
 # kotlin-movie
 
