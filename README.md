@@ -37,9 +37,9 @@
 
 ### 예매
 
-- [ ] reservation_id(PK), reservations_id(FK), screening_id(FK)
-- [ ] reservation_id를 통해 예매 정보를 조회할 수 있다
-- [ ] reservations_id를 통해 예매들을 알 수 있다
+- [x] reservation_id(PK), reservations_id(FK), screening_id(FK)
+- [x] reservation_id를 통해 예매 정보를 조회할 수 있다
+- [x] reservations_id를 통해 예매들을 알 수 있다
 
 ### 예약 좌석
 
