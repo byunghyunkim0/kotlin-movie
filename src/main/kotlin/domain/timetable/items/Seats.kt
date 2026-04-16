@@ -32,7 +32,10 @@ class Seats(
                     .sortedBy { it.getColumn() }
                     .map { seat ->
                         val isReserved = reservedSeats.isReservedSeatPosition(seat.toSeatPosition())
-                        seat.toSeatDto(isReserved)
+                        SeatStatusDto.of(
+                            seat = seat,
+                            isReserved = isReserved,
+                        )
                     }
             }
 }

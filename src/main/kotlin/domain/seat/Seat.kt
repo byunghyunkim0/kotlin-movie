@@ -1,10 +1,8 @@
 package domain.seat
 
-import domain.dto.SeatStatusDto
 import domain.money.Money
 import domain.seat.items.SeatGrade
 import domain.seat.items.SeatPosition
-import domain.seat.items.toDisplaySeatGrade
 
 class Seat(
     private val seatPosition: SeatPosition,
@@ -22,9 +20,5 @@ class Seat(
 
     fun getName(): String = seatPosition.getName()
 
-    fun toSeatDto(isReserved: Boolean): SeatStatusDto =
-        SeatStatusDto(
-            gradeName = seatGrade.toDisplaySeatGrade(),
-            isReserved = isReserved,
-        )
+    fun getSeatGrade(): SeatGrade = seatGrade
 }
