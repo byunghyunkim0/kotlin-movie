@@ -31,9 +31,9 @@
 
 ### 전체 예매
 
-- [ ] reservations_id(PK), usedPoints, paymentMethod, totalPrice
-- [ ] reservations_id를 통해 전체 예매 정보를 조회할 수 있다
-- [ ] 전체 예매를 저장할 수있다
+- [x] reservations_id(PK), usedPoints, paymentMethod, totalPrice
+- [x] reservations_id를 통해 전체 예매 정보를 조회할 수 있다
+- [x] 전체 예매를 저장할 수있다
 
 ### 예매
 
