@@ -24,10 +24,10 @@
 
 ### 상영 일정
 
-- [ ] screening_id(PK), movie_id(FK), startAt, endAt
-- [ ] screening_id를 통해 상영 일정을 조회할 수 있다
-- [ ] movie_id에 해당하는 상영 일정을 조회할 수 있다
-- [ ] 상영 일정 정보를 저장할 수 있다
+- [x] screening_id(PK), movie_id(FK), startAt, endAt
+- [x] screening_id를 통해 상영 일정을 조회할 수 있다
+- [x] movie_id에 해당하는 상영 일정을 조회할 수 있다
+- [x] 상영 일정 정보를 저장할 수 있다
 
 ### 전체 예매
 
