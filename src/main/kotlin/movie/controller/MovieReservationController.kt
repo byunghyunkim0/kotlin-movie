@@ -1,6 +1,6 @@
 package movie.controller
 
-import movie.domain.movie.itmes.Title
+import movie.domain.movie.items.Title
 import movie.domain.paycalculator.PayCalculator
 import movie.domain.point.Point
 import movie.domain.reservations.Reservations

@@ -1,6 +1,5 @@
 package movie.domain.movie.items
 
-import movie.domain.movie.itmes.ScreeningPeriod
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

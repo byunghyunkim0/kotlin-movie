@@ -2,10 +2,9 @@ package movie.domain.reservations.items
 
 import movie.domain.money.Money
 import movie.domain.movie.Movie
-import movie.domain.movie.itmes.RunningTime
-import movie.domain.movie.itmes.ScreeningPeriod
-import movie.domain.movie.itmes.Title
-import movie.domain.reservations.items.Reservation
+import movie.domain.movie.items.RunningTime
+import movie.domain.movie.items.ScreeningPeriod
+import movie.domain.movie.items.Title
 import movie.domain.seat.Seat
 import movie.domain.seat.items.SeatGrade
 import movie.domain.seat.items.SeatPosition

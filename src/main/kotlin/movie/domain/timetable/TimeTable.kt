@@ -1,7 +1,7 @@
 package movie.domain.timetable
 
 import movie.domain.dto.ScreeningScheduleDto
-import movie.domain.movie.itmes.Title
+import movie.domain.movie.items.Title
 import movie.domain.reservations.items.Reservation
 import movie.domain.timetable.items.ScreeningSchedule
 import java.time.LocalDate

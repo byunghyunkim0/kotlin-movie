@@ -1,6 +1,5 @@
 package movie.domain.movie.items
 
-import movie.domain.movie.itmes.RunningTime
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 

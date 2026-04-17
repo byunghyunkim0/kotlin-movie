@@ -1,8 +1,8 @@
 package movie.domain.movie
 
-import movie.domain.movie.itmes.RunningTime
-import movie.domain.movie.itmes.ScreeningPeriod
-import movie.domain.movie.itmes.Title
+import movie.domain.movie.items.RunningTime
+import movie.domain.movie.items.ScreeningPeriod
+import movie.domain.movie.items.Title
 import java.time.LocalDate
 
 class Movie(

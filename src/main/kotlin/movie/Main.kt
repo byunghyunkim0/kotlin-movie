@@ -9,9 +9,9 @@ import movie.domain.discountpolicy.MovieDayDiscountPolicy
 import movie.domain.discountpolicy.PayMethod
 import movie.domain.discountpolicy.TimeCondition
 import movie.domain.movie.Movie
-import movie.domain.movie.itmes.RunningTime
-import movie.domain.movie.itmes.ScreeningPeriod
-import movie.domain.movie.itmes.Title
+import movie.domain.movie.items.RunningTime
+import movie.domain.movie.items.ScreeningPeriod
+import movie.domain.movie.items.Title
 import movie.domain.paycalculator.PayCalculator
 import movie.domain.paycalculator.items.PayMethodDiscountCalculator
 import movie.domain.paycalculator.items.PriceDiscountCalculator

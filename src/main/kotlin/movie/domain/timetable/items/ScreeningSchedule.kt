@@ -3,7 +3,7 @@ package movie.domain.timetable.items
 import movie.domain.dto.ScreeningScheduleDto
 import movie.domain.dto.SeatStatusDto
 import movie.domain.movie.Movie
-import movie.domain.movie.itmes.Title
+import movie.domain.movie.items.Title
 import movie.domain.reservations.items.Reservation
 import movie.domain.seat.items.SeatPosition
 import java.time.LocalDate
