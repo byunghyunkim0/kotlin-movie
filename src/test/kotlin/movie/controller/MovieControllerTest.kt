@@ -3,6 +3,7 @@ package movie.controller
 import movie.persistence.entity.MovieEntity
 import movie.persistence.entity.ScreeningScheduleEntity
 import movie.persistence.jdbcrepository.MovieRepository
+import movie.persistence.jdbcrepository.ReservedSeatRepository
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock
@@ -17,10 +18,11 @@ import java.time.LocalDateTime
 class MovieControllerTest {
     private lateinit var mockMvc: MockMvc
     private val movieRepository: MovieRepository = mock(MovieRepository::class.java)
+    private val reservedSeatRepository: ReservedSeatRepository = mock(ReservedSeatRepository::class.java)
 
     @BeforeEach
     fun setUp() {
-        val controller = MovieController(movieRepository)
+        val controller = MovieController(movieRepository, reservedSeatRepository)
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build()
     }
 

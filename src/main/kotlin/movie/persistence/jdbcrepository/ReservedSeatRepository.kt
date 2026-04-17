@@ -8,4 +8,6 @@ interface ReservedSeatRepository {
     fun findById(id: Long): ReservedSeatEntity?
 
     fun findByReservationId(reservationId: Long): List<ReservedSeatEntity>
+
+    fun findByScreeningId(screeningId: Long): List<ReservedSeatEntity>
 }

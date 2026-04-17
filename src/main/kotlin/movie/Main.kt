@@ -27,6 +27,8 @@ import movie.domain.timetable.items.ScreenName
 import movie.domain.timetable.items.ScreenTime
 import movie.domain.timetable.items.ScreeningSchedule
 import movie.domain.timetable.items.Seats
+import movie.service.ApiReservationService
+import movie.service.ApiTimeTableService
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -54,11 +56,17 @@ fun main() {
             priceDiscountCalculator = priceDiscountCalculator,
         )
 
+    // Application API 서버를 호출하는 서비스 주입 (서버가 8080 포트에서 실행 중이어야 함)
+    val baseUrl = "http://localhost:8080"
+    val apiReservationService = ApiReservationService(baseUrl)
+    val apiTimeTableService = ApiTimeTableService(baseUrl)
+
     val controller =
         MovieReservationController(
             payCalculator = calculator,
-            timeTable = MockTimeTable.timeTable,
+            timeTableService = apiTimeTableService,
             point = userPoint,
+            reservationService = apiReservationService,
         )
 
     controller.run()
@@ -99,66 +107,33 @@ object MockTimeTable {
             schedules =
                 listOf(
                     createSchedule(
-                        "F1 더 무비",
-                        screenTime =
-                            ScreenTime(
-                                startTime = LocalTime.of(10, 20),
-                                endTime = LocalTime.of(12, 20),
-                                screeningDate = LocalDate.of(2026, 4, 10),
-                            ),
-                    ),
-                    createSchedule(
-                        "F1 더 무비",
-                        screenTime =
-                            ScreenTime(
-                                startTime = LocalTime.of(13, 0),
-                                endTime = LocalTime.of(15, 0),
-                                screeningDate = LocalDate.of(2026, 4, 10),
-                            ),
-                    ),
-                    createSchedule(
-                        "F1 더 무비",
-                        screenTime =
-                            ScreenTime(
-                                startTime = LocalTime.of(15, 40),
-                                endTime = LocalTime.of(17, 40),
-                                screeningDate = LocalDate.of(2026, 4, 10),
-                            ),
-                    ),
-                    createSchedule(
-                        "F1 더 무비",
-                        screenTime =
-                            ScreenTime(
-                                startTime = LocalTime.of(20, 10),
-                                endTime = LocalTime.of(22, 10),
-                                screeningDate = LocalDate.of(2026, 4, 10),
-                            ),
-                    ),
-                    createSchedule(
-                        "토이 스토리",
+                        1L,
+                        "인터스텔라",
                         screenTime =
                             ScreenTime(
                                 startTime = LocalTime.of(13, 30),
-                                endTime = LocalTime.of(15, 30),
-                                screeningDate = LocalDate.of(2026, 4, 10),
+                                endTime = LocalTime.of(16, 19),
+                                screeningDate = LocalDate.of(2025, 9, 20),
                             ),
                     ),
                     createSchedule(
-                        "토이 스토리",
+                        2L,
+                        "인터스텔라",
                         screenTime =
                             ScreenTime(
-                                startTime = LocalTime.of(16, 0),
-                                endTime = LocalTime.of(18, 0),
-                                screeningDate = LocalDate.of(2026, 4, 10),
+                                startTime = LocalTime.of(18, 0),
+                                endTime = LocalTime.of(20, 49),
+                                screeningDate = LocalDate.of(2025, 9, 20),
                             ),
                     ),
                     createSchedule(
-                        "아이언맨",
+                        3L,
+                        "오펜하이머",
                         screenTime =
                             ScreenTime(
-                                startTime = LocalTime.of(9, 50),
-                                endTime = LocalTime.of(11, 50),
-                                screeningDate = LocalDate.of(2026, 4, 10),
+                                startTime = LocalTime.of(10, 0),
+                                endTime = LocalTime.of(13, 0),
+                                screeningDate = LocalDate.of(2025, 9, 20),
                             ),
                     ),
                 ),
@@ -170,17 +145,19 @@ object MockTimeTable {
             runningTime = RunningTime(120),
             screeningPeriod =
                 ScreeningPeriod(
-                    startDate = LocalDate.of(2026, 4, 1),
-                    endDate = LocalDate.of(2026, 4, 30),
+                    startDate = LocalDate.of(2025, 1, 1),
+                    endDate = LocalDate.of(2025, 12, 31),
                 ),
         )
 
     private fun createSchedule(
+        id: Long,
         title: String,
         screenTime: ScreenTime,
     ) = ScreeningSchedule(
         movie = createMovie(title),
         screen = screen,
         screenTime = screenTime,
+        id = id,
     )
 }

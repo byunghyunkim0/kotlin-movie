@@ -29,7 +29,7 @@ import java.time.LocalDateTime
 
 class ReservationServiceIntegrationTest {
     private lateinit var connection: Connection
-    private lateinit var reservationService: ReservationService
+    private lateinit var reservationService: DbReservationService
     private lateinit var movieRepo: JdbcMovieRepository
     private lateinit var scheduleRepo: JdbcScreeningScheduleRepository
     private lateinit var reservationRepo: JdbcReservationRepository
@@ -63,7 +63,7 @@ class ReservationServiceIntegrationTest {
         val payCalculator = PayCalculator(payMethodCalculator, priceCalculator)
 
         reservationService =
-            ReservationService(
+            DbReservationService(
                 movieRepo,
                 scheduleRepo,
                 reservationRepo,

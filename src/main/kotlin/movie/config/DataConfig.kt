@@ -47,6 +47,12 @@ class DataConfig {
         JdbcReservedSeatRepository(DataSourceUtils.getConnection(dataSource))
 
     @Bean
+    fun timeTableService(
+        movieRepository: MovieRepository,
+        reservedSeatRepository: ReservedSeatRepository,
+    ): movie.service.TimeTableService = movie.service.DbTimeTableService(movieRepository, reservedSeatRepository)
+
+    @Bean
     fun priceDiscountCalculator(): PriceDiscountCalculator =
         PriceDiscountCalculator(
             movieDayDiscountPolicy = MovieDayDiscountPolicy(timeDiscountCondition = DateCondition()),
@@ -71,5 +77,23 @@ class DataConfig {
         PayCalculator(
             priceDiscountCalculator = priceDiscountCalculator,
             payMethodDiscountCalculator = payMethodDiscountCalculator,
+        )
+
+    @Bean
+    fun reservationService(
+        movieRepository: MovieRepository,
+        screeningScheduleRepository: ScreeningScheduleRepository,
+        reservationRepository: ReservationRepository,
+        reservationItemRepository: ReservationItemRepository,
+        reservedSeatRepository: ReservedSeatRepository,
+        payCalculator: PayCalculator,
+    ): movie.service.ReservationService =
+        movie.service.DbReservationService(
+            movieRepository,
+            screeningScheduleRepository,
+            reservationRepository,
+            reservationItemRepository,
+            reservedSeatRepository,
+            payCalculator,
         )
 }

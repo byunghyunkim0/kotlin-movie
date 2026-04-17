@@ -12,7 +12,12 @@ class Reservation(
     private val movie: Movie,
     private val screenTime: ScreenTime,
     private val seats: Seats,
+    private val screeningId: Long? = null,
 ) {
+    fun getScreeningId() = screeningId
+
+    fun getSeats() = seats
+
     fun toUpdatedSchedule(screeningSchedule: ScreeningSchedule): ScreeningSchedule {
         if (!screeningSchedule.isSameTime(screenTime) || !screeningSchedule.isSameMovie(movie)) {
             return screeningSchedule

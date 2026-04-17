@@ -13,7 +13,10 @@ class ScreeningSchedule(
     private val screen: Screen,
     private val screenTime: ScreenTime,
     private val reservedSeat: ReservedSeats = ReservedSeats(),
+    private val id: Long? = null,
 ) {
+    fun getId() = id
+
     fun isSameMovie(otherMovie: Movie): Boolean = movie.isSame(otherMovie)
 
     fun isSameTime(otherTime: ScreenTime): Boolean = screenTime.isSame(otherTime)
@@ -39,6 +42,7 @@ class ScreeningSchedule(
             movie = movie,
             screenTime = screenTime,
             seats = Seats(seats),
+            screeningId = id,
         )
     }
 

@@ -58,4 +58,29 @@ class JdbcReservedSeatRepository(
         }
         return seats
     }
+
+    override fun findByScreeningId(screeningId: Long): List<ReservedSeatEntity> {
+        val sql =
+            """
+            SELECT rs.id, rs.reservation_id, rs.seat_number 
+            FROM reserved_seat rs
+            JOIN reservation_item ri ON rs.reservation_id = ri.id
+            WHERE ri.screening_id = ?
+            """.trimIndent()
+        val seats = mutableListOf<ReservedSeatEntity>()
+        connection.prepareStatement(sql).use { pstmt ->
+            pstmt.setLong(1, screeningId)
+            val rs = pstmt.executeQuery()
+            while (rs.next()) {
+                seats.add(
+                    ReservedSeatEntity(
+                        id = rs.getLong("id"),
+                        reservationId = rs.getLong("reservation_id"),
+                        seatNumber = rs.getString("seat_number"),
+                    ),
+                )
+            }
+        }
+        return seats
+    }
 }

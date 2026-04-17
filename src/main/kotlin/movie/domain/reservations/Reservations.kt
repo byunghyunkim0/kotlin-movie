@@ -37,4 +37,6 @@ class Reservations(
     }
 
     fun toReservationDtoList(): List<ReservationDto> = reservations.map { it.toDto() }
+
+    fun getReservations() = reservations
 }
