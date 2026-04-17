@@ -1,6 +1,7 @@
 package movie.persistence.jdbcrepository
 
 import movie.persistence.entity.MovieEntity
+import movie.persistence.entity.ScreeningScheduleEntity
 import java.sql.Connection
 import java.sql.Statement
 
@@ -53,6 +54,54 @@ class JdbcMovieRepository(
                 )
             } else {
                 null
+            }
+        }
+    }
+
+    override fun findAllWithScreenings(): List<Pair<MovieEntity, List<ScreeningScheduleEntity>>> {
+        val sql =
+            """
+            SELECT 
+                m.id as m_id, m.title, m.runningTimeMinutes,
+                s.id as s_id, s.movie_id as s_movie_id, s.start_at, s.end_at
+            FROM movie m
+            LEFT JOIN screening_schedule s ON m.id = s.movie_id
+            """.trimIndent()
+
+        return connection.prepareStatement(sql).use { pstmt ->
+            val rs = pstmt.executeQuery()
+            val movieMap = mutableMapOf<Long, MovieEntity>()
+            val screeningsMap = mutableMapOf<Long, MutableList<ScreeningScheduleEntity>>()
+            val movieOrder = mutableListOf<Long>()
+
+            while (rs.next()) {
+                val movieId = rs.getLong("m_id")
+                if (!movieMap.containsKey(movieId)) {
+                    movieOrder.add(movieId)
+                    movieMap[movieId] =
+                        MovieEntity(
+                            id = movieId,
+                            title = rs.getString("title"),
+                            runningTimeMinutes = rs.getInt("runningTimeMinutes"),
+                        )
+                }
+
+                val screeningId = rs.getLong("s_id")
+                if (!rs.wasNull()) {
+                    val screenings = screeningsMap.getOrPut(movieId) { mutableListOf() }
+                    screenings.add(
+                        ScreeningScheduleEntity(
+                            id = screeningId,
+                            movieId = movieId,
+                            startAt = rs.getTimestamp("start_at").toLocalDateTime(),
+                            endAt = rs.getTimestamp("end_at").toLocalDateTime(),
+                        ),
+                    )
+                }
+            }
+
+            movieOrder.map { id ->
+                movieMap[id]!! to (screeningsMap[id] ?: emptyList())
             }
         }
     }

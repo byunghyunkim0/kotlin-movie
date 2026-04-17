@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS movie (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    runningTimeMinutes INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS screening_schedule (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    movie_id BIGINT NOT NULL,
+    start_at TIMESTAMP NOT NULL,
+    end_at TIMESTAMP NOT NULL,
+    FOREIGN KEY (movie_id) REFERENCES movie(id)
+);

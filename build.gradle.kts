@@ -23,6 +23,7 @@ dependencies {
     testImplementation("org.assertj", "assertj-core", "3.27.7")
     testImplementation("io.kotest", "kotest-runner-junit5", "6.0.7")
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
